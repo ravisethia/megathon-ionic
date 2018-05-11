@@ -21,7 +21,14 @@
 	<ion-row text-center>
 		<div class="item-heading" padding>Recent Questions</div>
 	</ion-row>
-	<ion-row>
+	<ion-row *ngFor="let post of posts">
+		<ion-card (click)="displayDetails(post)">
+			<ion-card-content>
+				<span>{{post.title}}</span>
+			</ion-card-content>
+		</ion-card>
+	</ion-row>
+	<!--<ion-row>
 		<ion-card class="quick-action" (click)="callUs()">
 			<ion-card-content>
 				<span>Call us</span>
@@ -51,6 +58,6 @@
 				<span>Visit us on Facebook</span>
 			</ion-card-content>
 		</ion-card>
-	</ion-row>
+	</ion-row>-->
 
 </ion-content>

@@ -7,6 +7,7 @@ import { GoogleMapsPage } from '../pages/google-maps/google-maps.page';
 import { HomePage } from '../pages/home/home.page';
 import { profilePage } from '../pages/profile/profile.page';
 import { WordpressListPage } from '../pages/wordpress/list/wordpress.list.page';
+import { TopTagsPage } from '../pages/toptags/toptags.page';
 
 import { LoginPage } from '../pages/login/login';
 import { AuthService } from '../services/auth.service';
@@ -37,7 +38,7 @@ export class MyApp {
 		this.pages = [
 			{ title: 'Home', component: HomePage, icon: 'home' },
 			{ title: 'Top Queries', component: WordpressListPage, icon: 'logo-wordpress' },
-			{ title: 'Top Tags', component: WordpressListPage, icon: 'pricetags' },
+			{ title: 'Top Tags', component: TopTagsPage, icon: 'pricetags' },
 			{ title: 'Recent Questions', component: GoogleMapsPage, icon: 'map' },
 			{ title: 'Your Questions', component: ComponentsListPage, icon: 'help-buoy' },
 			{ title: 'Profile', component: profilePage, icon: 'person' }

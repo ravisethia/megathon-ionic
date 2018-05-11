@@ -19,6 +19,7 @@ import { firebaseConfig } from '../config';
 import { LoginPage } from '../pages/login/login';
 import { AuthService } from '../services/auth.service';
 import { SignupPage } from '../pages/signup/signup';
+import { TopTagsModule } from '../pages/toptags/toptags.module';
 
 @NgModule({
 	declarations: [
@@ -39,7 +40,8 @@ import { SignupPage } from '../pages/signup/signup';
 		GoogleMapsModule,
 		HomeModule,
 		profileModule,
-		WordpressModule
+		WordpressModule,
+		TopTagsModule
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [

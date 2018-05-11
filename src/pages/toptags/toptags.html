@@ -1,0 +1,21 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Top Tags</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content class="getting-started">
+	<ion-row text-center>
+		<div class="item-heading" padding>Recent Questions</div>
+	</ion-row>
+	<ion-row *ngFor="let post of posts">
+		<ion-card>
+			<ion-card-content>
+				<span>{{post.title}}</span>
+			</ion-card-content>
+		</ion-card>
+	</ion-row>
+</ion-content>

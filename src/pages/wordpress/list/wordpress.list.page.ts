@@ -14,7 +14,7 @@ export class WordpressListPage implements OnInit {
 	likeCount = 0;
 	dislikeCount = 0;
 
-	private wordpressService: WordpressService;
+	private wordpressService: WordpressService;													
 	private nav: NavController;
 
 	constructor(wordpressService: WordpressService, nav: NavController) {
