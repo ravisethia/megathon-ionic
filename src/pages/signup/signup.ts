@@ -32,9 +32,7 @@ export class SignupPage {
 		this.auth.signUp(credentials).then(
 			() => {
 			this.navCtrl.setRoot(HomePage),
-			this.auth.addQuestion({
-			  question: 'some question'
-			})
+			this.auth.retriveAnswer('abc')
 			},
 			error => this.signupError = error.message
 		);

@@ -57,6 +57,24 @@ export class AuthService {
 	  firebase.database().ref().update(updates);
 	}
 
+	postAnswer(answerData) {
+		// Get a key for a new Post.
+		const newPostKey = firebase.database().ref().child('answers').push(answerData).key;
+
+		// Write the new post's data simultaneously in the posts list and the user's post list.
+		let updates = {};
+		updates['/questions/' + newPostKey] = answerData;
+		updates['users/' + this.afAuth.auth.currentUser.uid + '/' + newPostKey] = answerData;
+
+		firebase.database().ref().update(updates);
+	}
+
+	retriveAnswer(questionId) {
+		firebase.database().ref().child('answers').orderByChild("answerId").equalTo(questionId).on("child_added", function(data) {
+ 			console.log("Equal to filter: " + data.val().answer);
+		});
+	}
+
 	signUp(credentials) {
 		return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email,credentials.password);
 	}
