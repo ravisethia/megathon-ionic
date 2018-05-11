@@ -11,6 +11,7 @@ import { CallService } from '../../services/call.service';
 import { MapsService } from '../../services/maps.service';
 import { InAppBrowserService } from '../../services/in-app-browser.service';
 import { data } from './home-data';
+import { Post } from '../wordpress/models/post.model';
 
 @Component({
 	templateUrl: 'home.html',
@@ -18,6 +19,7 @@ import { data } from './home-data';
 })
 export class HomePage {
 	public tiles: Tile[][];
+	post: Post;
 
 	private emailService: EmailService;
 	private callService: CallService;
@@ -62,4 +64,11 @@ export class HomePage {
 	public askQuestion() {
 		this.nav.push(AskPage);
 	}
+
+	// ngOnInit(): void {
+	// 	this.wordpressService.getPosts()
+	// 		.subscribe(posts => {
+	// 			this.posts = posts;
+	// 		});
+	// }
 }
