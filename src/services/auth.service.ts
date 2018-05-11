@@ -31,13 +31,26 @@ export class AuthService {
     });
 	}
 
+	retrieveProfileInfo(profileData) {
+		let profileRef = firebase.database().ref('users/' + this.afAuth.auth.currentUser.uid);
+		profileRef.on('value', function(profile) {
+			for(let propName in profile.val()) {
+				if(profile.val().hasOwnProperty(propName)) {
+					let propValue = profile.val()[propName];
+					console.log(propValue);
+					// do something with each element here
+				}
+			}
+		});
+	}
+
   retrieveQuestions() {
-		let starCountRef = firebase.database().ref().child('questions');
-		starCountRef.on('value', function(snapshot) {
-			console.log('hello', snapshot.val());
-			for(let propName in snapshot.val()) {
-				if(snapshot.val().hasOwnProperty(propName)) {
-					let propValue = snapshot.val()[propName];
+		let QuestionRef = firebase.database().ref().child('questions');
+		QuestionRef.on('value', function(question) {
+			console.log('hello', question.val());
+			for(let propName in question.val()) {
+				if(question.val().hasOwnProperty(propName)) {
+					let propValue = question.val()[propName];
 					console.log(propValue);
 					// do something with each element here
 				}
