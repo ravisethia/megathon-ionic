@@ -32,15 +32,13 @@ export class HomePage {
 		callService: CallService,
 		mapsService: MapsService,
 		browserService: InAppBrowserService,
-		nav: Nav,
-		navParams: NavParams
+		nav: Nav
 	) {
 		this.emailService = emailService;
 		this.callService = callService;
 		this.mapsService = mapsService;
 		this.browserService = browserService;
 		this.nav = nav;
-		this.post = <Post>navParams.get('item');
 	}
 
 	public navigateTo(tile) {
