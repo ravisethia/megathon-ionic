@@ -7,11 +7,11 @@ export class Config {
 
 export const firebaseConfig = {
 	fire: {
-		apiKey: "AIzaSyDW6woVw3gDQVvKtreZ4g9igRW92knq4Sg",
-		authDomain: "supermodular-c9b81.firebaseapp.com",
-		databaseURL: "https://supermodular-c9b81.firebaseio.com",
-		projectId: "supermodular-c9b81",
-		storageBucket: "supermodular-c9b81.appspot.com",
-		messagingSenderId: "374150420031"
+		apiKey: "AIzaSyDJiEWKZebDy8v-5CHixF327ixlMBHSHL0",
+		authDomain: "megathon-f964c.firebaseapp.com",
+		databaseURL: "https://megathon-f964c.firebaseio.com",
+		projectId: "megathon-f964c",
+		storageBucket: "megathon-f964c.appspot.com",
+		messagingSenderId: "131083202046"
 	}
 };
