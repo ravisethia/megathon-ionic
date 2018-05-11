@@ -1,0 +1,47 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Create Profile</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+
+	<form (ngSubmit)="register()" [formGroup]="regform">
+		<ion-list inset>
+
+			<ion-item >
+				<ion-label stacked>First Name</ion-label>
+				<ion-input type="text" placeholder="First Name" formControlName="fName"></ion-input>
+			</ion-item>			
+
+			<ion-item >
+				<ion-label stacked>Last Name</ion-label>
+				<ion-input type="text" placeholder="Last Name" formControlName="lName"></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label stacked>Seat Number</ion-label>
+				<ion-input type="text" placeholder="Seat Number"></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label stacked>Designation</ion-label>
+				<ion-select>
+					<ion-option value="bta">BTA</ion-option>
+				    <ion-option value="con" selected>Consultant</ion-option>
+				    <ion-option value="srcon">Sr. Consultant</ion-option>
+				    <ion-option value="splsr">Specialist Sr.</ion-option>
+				</ion-select>
+			</ion-item>
+
+			
+		</ion-list>
+
+		<div padding-horizontal>
+			<button ion-button full type="submit" [disabled]="!regform.valid">UPDATE</button>
+		</div>
+	</form>
+</ion-content>
