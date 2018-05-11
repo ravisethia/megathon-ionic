@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Events } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import AuthProvider = firebase.auth.AuthProvider;
@@ -10,7 +11,7 @@ console.log(database.Reference);
 export class AuthService {
 	private user: firebase.User;
 
-	constructor(public afAuth: AngularFireAuth) {
+	constructor(public afAuth: AngularFireAuth, public events: Events) {
 		afAuth.authState.subscribe(user => {
 			this.user = user;
 		});
@@ -26,35 +27,26 @@ export class AuthService {
       firstName: profileData.firstName,
 			lastName: profileData.lastName,
 			designation: profileData.designation,
-			location: profileData.location,
-			photoUrl: profileData.photoUrl
+			location: profileData.location
+			//photoUrl: profileData.photoUrl
     });
 	}
 
-	retrieveProfileInfo(profileData) {
+	retrieveProfileInfo() {
 		let profileRef = firebase.database().ref('users/' + this.afAuth.auth.currentUser.uid);
+		let self = this;
+
 		profileRef.on('value', function(profile) {
-			for(let propName in profile.val()) {
-				if(profile.val().hasOwnProperty(propName)) {
-					let propValue = profile.val()[propName];
-					console.log(propValue);
-					// do something with each element here
-				}
-			}
+			self.events.publish('profile:fetched', profile.val());
 		});
 	}
 
-  retrieveQuestions() {
+  	retrieveQuestions() {
 		let QuestionRef = firebase.database().ref().child('questions');
+		let self = this;
+
 		QuestionRef.on('value', function(question) {
-			console.log('hello', question.val());
-			for(let propName in question.val()) {
-				if(question.val().hasOwnProperty(propName)) {
-					let propValue = question.val()[propName];
-					console.log(propValue);
-					// do something with each element here
-				}
-			}
+			self.events.publish('questions:fetched', question.val());
 		});
 	}
 

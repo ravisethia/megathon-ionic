@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { NavController, ToastController } from 'ionic-angular';
+import { Events, NavController, ToastController } from 'ionic-angular';
 import { HomePage } from '../home/home.page';
 
 import { AuthService } from '../../services/auth.service';
@@ -9,20 +8,29 @@ import { AuthService } from '../../services/auth.service';
 	templateUrl: 'profile.html'
 })
 export class profilePage {
-	private regform: FormGroup;
 	private designation;
-	private profileData = {};
+	private profileData = {
+		firstName: '',
+		lastName: '',
+		location: '',
+		designation: ''
+	};
 
 	constructor(
 		private navCtrl: NavController,
-		private fb: FormBuilder,
+		public events: Events,
 		private auth: AuthService, public toastCtrl: ToastController
 	) {
-		this.regform = fb.group({
-			fName: ['', Validators.required],
-			lName: ['', Validators.required],
-			seatLocation: ['', Validators.required],
-			designation: ['', Validators.required],
+	}
+
+	ngOnInit(): void {
+		let profileVal = this.auth.retrieveProfileInfo();
+
+		this.events.subscribe('profile:fetched', (profileData) => {
+			this.profileData.firstName = profileData.firstName;
+			this.profileData.lastName = profileData.lastName;
+			this.profileData.location = profileData.location;
+			this.profileData.designation = profileData.designation;
 		});
 	}
 
@@ -41,7 +49,5 @@ export class profilePage {
 		  });
 		
 		toast.present();
-
-		this.navCtrl.pop();
 	}	
 }

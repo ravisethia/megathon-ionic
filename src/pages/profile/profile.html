@@ -24,7 +24,7 @@
 
 			<ion-item>
 				<ion-label stacked>Seat Number</ion-label>
-				<ion-input type="text" placeholder="Seat Number" name="seatLocation" [(ngModel)]="profileData.seatLocation"></ion-input>
+				<ion-input type="text" placeholder="Seat Number" name="location" [(ngModel)]="profileData.location"></ion-input>
 			</ion-item>
 
 			<ion-item>
@@ -39,7 +39,7 @@
 		</ion-list>
 
 		<div padding-horizontal>
-			<button ion-button full type="submit" [disabled]="!regform.valid">UPDATE</button>
+			<button ion-button full type="submit">UPDATE</button>
 		</div>
 	</form>
 </ion-content>
