@@ -15,7 +15,7 @@ export class SignupPage {
 	constructor(
 		fb: FormBuilder,
 		private navCtrl: NavController,
-    private auth: AuthService
+    	private auth: AuthService
 	) {
 		this.form = fb.group({
 			email: ['', Validators.compose([Validators.required, Validators.email])],
