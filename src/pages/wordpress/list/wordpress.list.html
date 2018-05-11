@@ -3,16 +3,59 @@
 		<button ion-button menuToggle>
 			<ion-icon name="menu"></ion-icon>
 		</button>
-		<ion-title>WP posts</ion-title>
+		<ion-title>Recent Questions</ion-title>
 	</ion-navbar>
 </ion-header>
 
 <ion-content>
-	<ion-card *ngFor="let post of posts" (click)="itemTapped(post)">
-		<img *ngIf="!!post.image" src="{{post.image}}"/>
-		<ion-card-content>
+	<ion-card *ngFor="let post of posts">
+		<ion-item>
+			<ion-avatar item-start>
+				<!-- <img src="img/marty-avatar.png"> -->
+				<ion-icon name="contact"></ion-icon>
+			</ion-avatar>
+			<h2>Marty McFly</h2>
+			<p>November 5, 1955</p>
+			<ion-avatar item-end>
+					<ion-icon name="md-medal" color="secondary"></ion-icon>
+			</ion-avatar>
+		</ion-item>
+		<ion-card-content (click)="itemTapped(post)">
 			<h2 class="card-title">{{post.title}}</h2>
-			<p>{{post.brief | trimHtml | truncate : 140}}</p>
+			<div [innerHTML]="post.content"></div>
+			<p>
+				<strong>{{post.author}}</strong> - {{post.date}}</p>
+			<p>
+				<i>[{{post.tags.join(', ')}}]</i>
+			</p>
 		</ion-card-content>
+		<ion-row>
+				<ion-col>
+						<button ion-button icon-left clear small>
+								<ion-icon name="attach"></ion-icon>
+								<div>File Name</div>
+							</button>
+				</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<button ion-button icon-left clear small (click)="increamentFunction('likeCount')">
+					<ion-icon name="thumbs-up"></ion-icon>
+					<div>{{likeCount}} Likes</div>
+				</button>
+			</ion-col>
+			<ion-col>
+				<button ion-button icon-left clear small (click)="increamentFunction('dislikeCount')">
+					<ion-icon name="thumbs-down"></ion-icon>
+					<div>{{dislikeCount}} Dislikes</div>
+				</button>
+			</ion-col>
+			<ion-col>
+				<button ion-button icon-left clear small>
+					<ion-icon name="md-create"></ion-icon>
+					<div>Answer</div>
+				</button>
+			</ion-col>
+		</ion-row>
 	</ion-card>
 </ion-content>
