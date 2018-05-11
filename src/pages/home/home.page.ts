@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Nav } from 'ionic-angular';
+import { Nav, Events } from 'ionic-angular';
 
 import { WordpressListPage } from '../wordpress/list/wordpress.list.page';
 
@@ -14,6 +14,7 @@ import { data } from './home-data';
 import { Post } from '../wordpress/models/post.model';
 import { WordpressItemPage } from '../wordpress/item/wordpress.item.page';
 import { WordpressService } from '../wordpress/wordpress.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
 	templateUrl: 'home.html',
@@ -21,7 +22,8 @@ import { WordpressService } from '../wordpress/wordpress.service';
 })
 export class HomePage {
 	public tiles: Tile[][];
-	public posts: Post[];
+	public posts = [];
+
 	questionsList=[];
 
 	private emailService: EmailService;
@@ -37,7 +39,9 @@ export class HomePage {
 		mapsService: MapsService,
 		browserService: InAppBrowserService,
 		nav: Nav,
-		wordpressService: WordpressService
+		public events: Events,
+		wordpressService: WordpressService,
+		private auth: AuthService
 	) {
 		this.emailService = emailService;
 		this.callService = callService;
@@ -45,17 +49,33 @@ export class HomePage {
 		this.browserService = browserService;
 		this.nav = nav;
 		this.wordpressService = wordpressService;
-		this.questionsList=[
-		{question:'Question A?', answer:'answer A'},
-		{question:'Question B?', answer:'answer B'}
-	  ];
 	}
 
 	ngOnInit(): void {
-		this.wordpressService.getPosts()
-			.subscribe(posts => {
-				this.posts = posts;
-			});
+		// this.wordpressService.getPosts()
+		// 	.subscribe(posts => {
+		// 		this.posts = posts;
+		// 	});
+
+		let self = this;
+		this.auth.retrieveQuestions();
+
+		this.events.subscribe('questions:fetched', (questionData) => {
+			console.log(questionData);
+			for(let propName in questionData) {
+				if(questionData.hasOwnProperty(propName)) {
+					let propValue = questionData[propName];
+					if (propValue.question) {
+
+						this.posts.push({
+							questionId: propValue.questionId,
+							question: propValue.question
+						});
+					}
+					// do something with each element here
+				}
+			}
+		});
 	}
 
 	public navigateTo(tile) {
@@ -86,11 +106,4 @@ export class HomePage {
 			item: item
 		});
 	}
-
-	// ngOnInit(): void {
-	// 	this.wordpressService.getPosts()
-	// 		.subscribe(posts => {
-	// 			this.posts = posts;
-	// 		});
-	// }
 }
