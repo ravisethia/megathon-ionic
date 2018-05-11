@@ -30,7 +30,12 @@ export class SignupPage {
 			password: data.password
 		};
 		this.auth.signUp(credentials).then(
-			() => this.navCtrl.setRoot(HomePage),
+			() => {
+			this.navCtrl.setRoot(HomePage),
+			this.auth.addQuestion({
+			  question: 'some question'
+			})
+			},
 			error => this.signupError = error.message
 		);
   }
