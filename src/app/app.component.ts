@@ -36,10 +36,11 @@ export class MyApp {
 		// set our app's pages
 		this.pages = [
 			{ title: 'Home', component: HomePage, icon: 'home' },
-			{ title: 'Wordpress', component: WordpressListPage, icon: 'logo-wordpress' },
-			{ title: 'Slides', component: SlideBoxPage, icon: 'swap' },
-			{ title: 'Google maps', component: GoogleMapsPage, icon: 'map' },
-			{ title: 'Components', component: ComponentsListPage, icon: 'grid' },
+			{ title: 'Top Queries', component: WordpressListPage, icon: 'logo-wordpress' },
+			{ title: 'Top Tags', component: SlideBoxPage, icon: 'pricetags' },
+			{ title: 'Recent Questions', component: GoogleMapsPage, icon: 'map' },
+			{ title: 'Your Questions', component: ComponentsListPage, icon: 'help-buoy' },
+			{ title: 'Profile', component: ComponentsListPage, icon: 'person' }
 		];
 	}
 

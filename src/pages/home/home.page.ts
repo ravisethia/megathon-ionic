@@ -62,9 +62,9 @@ export class HomePage {
 
 	private initTiles(): void {
 		this.tiles = [[{
-			title: 'Wordpress',
-			path: 'wordpress-articles',
-			icon: 'logo-wordpress',
+			title: 'questions',
+			path: 'questions-articles',
+			icon: 'logo-questions',
 			component: WordpressListPage
 		}, {
 			title: 'Slides',
