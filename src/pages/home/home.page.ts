@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Nav } from 'ionic-angular';
 
 import { WordpressListPage } from '../wordpress/list/wordpress.list.page';
+
 import { AskPage } from '../ask/ask';
 
 import { Tile } from './models/tile.model';

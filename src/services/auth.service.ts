@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import AuthProvider = firebase.auth.AuthProvider;
+import * as database from 'firebase/database';
+
+console.log(database.Reference);
 
 @Injectable()
 export class AuthService {
@@ -15,8 +18,43 @@ export class AuthService {
 
 	signInWithEmail(credentials) {
 		console.log('Sign in with email');
-		return this.afAuth.auth.signInWithEmailAndPassword(credentials.email,
-			 credentials.password);
+		return this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
+	}
+
+	addProfileInfo(profileData) {
+		return firebase.database().ref('users/' + this.afAuth.auth.currentUser.uid).set({
+      firstName: profileData.firstName,
+			lastName: profileData.lastName,
+			designation: profileData.designation,
+			location: profileData.location,
+			photoUrl: profileData.photoUrl
+    });
+	}
+
+  retrieveQuestions() {
+		let starCountRef = firebase.database().ref().child('questions');
+		starCountRef.on('value', function(snapshot) {
+			console.log('hello', snapshot.val());
+			for(let propName in snapshot.val()) {
+				if(snapshot.val().hasOwnProperty(propName)) {
+					let propValue = snapshot.val()[propName];
+					console.log(propValue);
+					// do something with each element here
+				}
+			}
+		});
+	}
+
+	addQuestion(questionData) {
+	  // Get a key for a new Post.
+	  const newPostKey = firebase.database().ref().child('questions').push(questionData).key;
+
+	  // Write the new post's data simultaneously in the posts list and the user's post list.
+	  let updates = {};
+	  updates['/questions/' + newPostKey] = questionData;
+	  updates['users/' + this.afAuth.auth.currentUser.uid + '/' + newPostKey] = questionData;
+
+	  firebase.database().ref().update(updates);
 	}
 
 	signUp(credentials) {
