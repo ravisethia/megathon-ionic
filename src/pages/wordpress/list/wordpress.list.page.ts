@@ -6,10 +6,13 @@ import { Post } from '../models/post.model';
 
 @Component({
 	templateUrl: 'wordpress.list.html',
+	styleUrls: ['/list/wordpress.list.page.scss'],
 	providers: [WordpressService]
 })
 export class WordpressListPage implements OnInit {
 	public posts: Post[];
+	likeCount = 0;
+	dislikeCount = 0;
 
 	private wordpressService: WordpressService;
 	private nav: NavController;
@@ -30,5 +33,13 @@ export class WordpressListPage implements OnInit {
 		this.nav.push(WordpressItemPage, {
 			item: item
 		});
+	}
+
+	increamentFunction(count): void {
+		if(count === "likeCount"){
+			this.likeCount++;
+		}else{
+			this.dislikeCount++;
+		}
 	}
 }

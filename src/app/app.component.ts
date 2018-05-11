@@ -40,7 +40,6 @@ export class MyApp {
 			{ title: 'Profile', component: profilePage, icon: 'swap' },
 			{ title: 'Google maps', component: GoogleMapsPage, icon: 'map' },
 			{ title: 'Components', component: ComponentsListPage, icon: 'grid' },
-			
 		];
 	}
 

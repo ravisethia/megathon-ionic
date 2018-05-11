@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Nav } from 'ionic-angular';
 
 import { WordpressListPage } from '../wordpress/list/wordpress.list.page';
-import { profilePage } from '../profile/profile.page';
-import { GoogleMapsPage } from '../google-maps/google-maps.page';
+
+import { AskPage } from '../ask/ask';
 
 import { Tile } from './models/tile.model';
 import { EmailService } from '../../services/email.service';
@@ -37,7 +37,6 @@ export class HomePage {
 		this.mapsService = mapsService;
 		this.browserService = browserService;
 		this.nav = nav;
-		this.initTiles();
 	}
 
 	public navigateTo(tile) {
@@ -60,22 +59,7 @@ export class HomePage {
 		this.callService.call(data.phoneNumber);
 	}
 
-	private initTiles(): void {
-		this.tiles = [[{
-			title: 'Wordpress',
-			path: 'wordpress-articles',
-			icon: 'logo-wordpress',
-			component: WordpressListPage
-		}, {
-			title: 'Slides',
-			path: 'slides',
-			icon: 'swap',
-			component: profilePage
-		}], [{
-			title: 'Map',
-			path: 'map',
-			icon: 'map',
-			component: GoogleMapsPage
-		}]];
+	public askQuestion() {
+		this.nav.push(AskPage);
 	}
 }

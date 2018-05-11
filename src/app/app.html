@@ -1,7 +1,7 @@
 <ion-menu id="leftMenu" [content]="content" type="overlay">
 	<ion-header>
 		<ion-toolbar>
-			<ion-title>Pages</ion-title>
+			<ion-title>{{auth.getEmail()}}</ion-title>
 		</ion-toolbar>
 	</ion-header>
 
@@ -11,7 +11,7 @@
 			<ion-icon [name]="p.icon" item-left></ion-icon>
 			{{p.title}}
 		</ion-item>
-		<ion-list-header *ngIf="auth.getEmail()">{{auth.getEmail()}}</ion-list-header>
+		<!-- <ion-list-header *ngIf="auth.getEmail()">{{auth.getEmail()}}</ion-list-header> -->
 
 		<ion-item (click)="logout()" *ngIf="auth.authenticated">
 			<ion-icon name="log-out" item-left></ion-icon>
@@ -28,4 +28,5 @@
 
 </ion-menu>
 
-<ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>
+<ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>
+
