@@ -62,10 +62,10 @@ export class AskPage {
         this.nav.pop();
       }
     } else {
-
       let questionData = {
         questionId : this.uuid.getUUID(),
-        question : this.inputData
+        question : this.inputData,
+        date: new Date()
       };
 
       if (questionData.question.length > 2) {

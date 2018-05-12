@@ -52,6 +52,7 @@ export class AuthService {
 
 	addQuestion(questionData) {
 	  // Get a key for a new Post.
+		questionData.user = this.afAuth.auth.currentUser.email;
 	  const newPostKey = firebase.database().ref().child('questions').push(questionData).key;
 
 	  // Write the new post's data simultaneously in the posts list and the user's post list.

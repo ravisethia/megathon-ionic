@@ -65,10 +65,6 @@ export class HomePage {
 
 	init(): void {
 		let self = this;
-		this.auth.retrieveQuestions();
-
-		this.presentLoading();
-
 		this.posts = [];
 
 		this.events.subscribe('questions:fetched', (questionData) => {
@@ -79,7 +75,9 @@ export class HomePage {
 					if (propValue.question) {
 						this.posts.push({
 							questionId: propValue.questionId,
-							question: propValue.question
+							question: propValue.question,
+							email: propValue.user ? propValue.user.split("@")[0] : '',
+							date: propValue.date
 						});
 					}
 					// do something with each element here

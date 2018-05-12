@@ -15,8 +15,8 @@
 				<!-- <img src="img/marty-avatar.png"> -->
 				<ion-icon name="contact"></ion-icon>
 			</ion-avatar>
-			<h2>Marty McFly</h2>
-			<p>November 5, 1955</p>
+			<h2>{{post.email}}</h2>
+			<p>{{post.date}}</p>
 			<ion-avatar item-end>
 				<ion-icon name="md-medal" color="secondary"></ion-icon>
 			</ion-avatar>
@@ -44,7 +44,7 @@
 				<ion-col col-12 padding>
 					<p>{{answer.answer}}</p>
 				</ion-col>
-	
+
 
 			<ion-col>
 				<button ion-button icon-left clear small (click)="upvoteClicked(answer)">
