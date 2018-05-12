@@ -51,18 +51,26 @@ export class HomePage {
 		this.browserService = browserService;
 		this.nav = nav;
 		this.wordpressService = wordpressService;
+		this.posts = [];
 		this.init();
 	}
+
 	presentLoading() {
 		let loader = this.loadingCtrl.create({
-		  content: "Please wait...",
-		  duration: 3000
+			content: "Please wait...",
+			duration: 3000
 		});
 		loader.present();
-	  }
-	init(): void {
+	}
 
+	init(): void {
 		let self = this;
+		this.auth.retrieveQuestions();
+
+		this.presentLoading();
+
+		this.posts = [];
+
 		this.events.subscribe('questions:fetched', (questionData) => {
 		  this.posts = [];
 			for(let propName in questionData) {
@@ -106,7 +114,7 @@ export class HomePage {
 		this.nav.push(AskPage);
 	}
 	public displayDetails(item){
-		this.nav.push(WordpressItemPage ,{
+		this.nav.push(WordpressItemPage, {
 			item: item
 		});
 	}
