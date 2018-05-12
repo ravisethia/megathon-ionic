@@ -30,8 +30,8 @@
 			<ion-col>
 				<ion-buttons end>
 					<button end ion-button icon-left clear small (click)="answerQuestion()">
-						<ion-icon name="md-create"></ion-icon>
-						<div>&nbsp;Answer</div>
+						<ion-icon class="green-icon" name="md-create"></ion-icon>
+						<div class="green-text">&nbsp;Answer</div>
 					</button>
 				</ion-buttons>
 			</ion-col>
@@ -48,14 +48,14 @@
 
 			<ion-col>
 				<button ion-button icon-left clear small (click)="upvoteClicked(answer)">
-					<ion-icon name="thumbs-up"></ion-icon>
-					<div [innerHTML]="answer.upvote"></div>
+					<ion-icon class="green-icon" name="thumbs-up"></ion-icon>
+					<div class="green-text" [innerHTML]="answer.upvote"></div>
 				</button>
 			</ion-col>
 			<ion-col>
 				<button ion-button icon-left clear small  (click)="downvoteClicked(answer)">
-					<ion-icon name="thumbs-down"></ion-icon>
-					<div [innerHTML]="answer.downvote"></div>
+					<ion-icon class="green-icon" name="thumbs-down"></ion-icon>
+					<div class="green-text" [innerHTML]="answer.downvote"></div>
 				</button>
 			</ion-col>
 		</ion-row>
