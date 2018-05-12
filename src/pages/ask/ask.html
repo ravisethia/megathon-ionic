@@ -7,23 +7,26 @@
 <ion-header>
 
   <ion-navbar>
+      <ion-title>{{title}}</ion-title>
+    <!-- <ion-title *ngIf="isAnswer;else answer_section">Answer</ion-title>
     <ion-title>Question</ion-title>
+    <ng-template #answer_section>Answer</ng-template> -->
   </ion-navbar>
-
+ 
 </ion-header>
 
 
 <ion-content padding>
 
   <ion-item>
-      <ion-input type="text" value="" placeholder="Ask your question here" [(ngModel)]="question"></ion-input>
+      <ion-input type="text" value="" placeholder="{{description}}" [(ngModel)]="inputData"></ion-input>
   </ion-item>
 
   <ion-row padding>
     <button ion-button clear><ion-icon name="attach"></ion-icon>Attach</button>
 
     <ion-col>
-      <button ion-button float-right color="secondary" (click)="postQuestion()">Post</button>
+      <button ion-button float-right color="secondary" (click)="postInput()">Post</button>
     </ion-col>
   </ion-row>
 
