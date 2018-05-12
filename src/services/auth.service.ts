@@ -82,6 +82,14 @@ export class AuthService {
 		});
 	}
 
+	voteClick(answerData, updatedAnswerData) {
+	  firebase.database().ref().child('answers').orderByChild("answerId").equalTo(answerData.answerId).on("child_added", function(data) {
+			let updates = {};
+			updates['/answers/' + data.key] = updatedAnswerData;
+			firebase.database().ref().update(updates);
+	  });
+	}
+
 	signUp(credentials) {
 		return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email,credentials.password);
 	}

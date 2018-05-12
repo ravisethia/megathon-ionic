@@ -30,7 +30,7 @@ export class AskPage {
   ) {
       this.nav = nav;
   }
-  
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad AskPage');
     this.isAnswer = this.navParams.get('isAnswer');
@@ -49,7 +49,9 @@ export class AskPage {
       let answerData = {
         answerId: this.uuid.getUUID(),
         questionId: this.navParams.get('questionId'),
-        answer: this.inputData
+        answer: this.inputData,
+        upvote: 0,
+        downvote: 0
       }
 
       if (answerData.answer.length > 2) {
@@ -60,17 +62,17 @@ export class AskPage {
         this.nav.pop();
       }
     } else {
-  
+
       let questionData = {
         questionId : this.uuid.getUUID(),
         question : this.inputData
       };
-  
+
       if (questionData.question.length > 2) {
         this.auth.addQuestion(questionData);
 
         toastOpts.message = 'Your question is posted';
-  
+
         this.nav.pop();
       }
     }

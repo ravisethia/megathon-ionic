@@ -10,7 +10,7 @@ import { AuthService } from '../../../services/auth.service';
 	templateUrl: 'wordpress.item.html'
 })
 export class WordpressItemPage {
-	
+
 	private nav: NavController;
 	private post = {
 		questionId: '',
@@ -32,7 +32,10 @@ export class WordpressItemPage {
 			if( answerData ) {
 				let answers = {
 					answerId: answerData.answerId,
-					answer: answerData.answer
+					answer: answerData.answer,
+					upvote: answerData.upvote,
+					downvote: answerData.downvote,
+					questionId: self.post.questionId
 				};
 
 				self.answers.push(answers);
@@ -40,6 +43,18 @@ export class WordpressItemPage {
 				console.log(self.answers);
 			}
 		});
+	}
+
+  public upvoteClicked(answerData) {
+	  const updatedAnswerData = answerData;
+		updatedAnswerData.upvote = answerData.upvote + 1;
+	  this.auth.voteClick(answerData, updatedAnswerData);
+	}
+
+	public downvoteClicked(answerData) {
+		const updatedAnswerData = answerData;
+	  updatedAnswerData.downvote = answerData.downvote + 1;
+	  this.auth.voteClick(answerData, updatedAnswerData);
 	}
 
 	answerQuestion(): void {

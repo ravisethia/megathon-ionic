@@ -36,13 +36,13 @@
 			<ion-col>
 				<button ion-button icon-left clear small>
 					<ion-icon name="thumbs-up"></ion-icon>
-					<div>5 Likes</div>
+					<div [innerHTML]="answer.upvote" (click)="upvoteClicked(answer)"></div>
 				</button>
 			</ion-col>
 			<ion-col>
 				<button ion-button icon-left clear small>
 					<ion-icon name="thumbs-down"></ion-icon>
-					<div>6 Dislikes</div>
+					<div [innerHTML]="answer.downvote" (click)="downvoteClicked(answer)"></div>
 				</button>
 			</ion-col>
 			<ion-col>
