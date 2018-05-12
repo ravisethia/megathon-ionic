@@ -23,37 +23,34 @@
 		</ion-item>
 		<ion-card-content>
 			<h2 class="card-title">{{post.question}}</h2>
-			 <div [innerHTML]="post.answer"></div>
 			<!--<p><strong>{{post.author}}</strong> - {{post.date}}</p>
 			<p><i>[{{post.tags.join(', ')}}]</i></p> -->
 		</ion-card-content>
-		<ion-row>
+	</ion-card>
+
+	<ion-card>
+		<ion-row *ngFor="let answer of answers">
+
+			<div [innerHTML]="answer.answer"></div>
+
 			<ion-col>
-					<button ion-button icon-left clear small>
-							<ion-icon name="attach"></ion-icon>
-							<div>File Name</div>
-						</button>
+				<button ion-button icon-left clear small>
+					<ion-icon name="thumbs-up"></ion-icon>
+					<div>5 Likes</div>
+				</button>
 			</ion-col>
-	</ion-row>
-	<ion-row>
-		<ion-col>
-			<button ion-button icon-left clear small>
-				<ion-icon name="thumbs-up"></ion-icon>
-				<div>5 Likes</div>
-			</button>
-		</ion-col>
-		<ion-col>
-			<button ion-button icon-left clear small>
-				<ion-icon name="thumbs-down"></ion-icon>
-				<div>6 Dislikes</div>
-			</button>
-		</ion-col>
-		<ion-col>
-			<button ion-button icon-left clear small (click)="answerQuestion()">
-				<ion-icon name="md-create"></ion-icon>
-				<div>Answer</div>
-			</button>
-		</ion-col>
-	</ion-row>
+			<ion-col>
+				<button ion-button icon-left clear small>
+					<ion-icon name="thumbs-down"></ion-icon>
+					<div>6 Dislikes</div>
+				</button>
+			</ion-col>
+			<ion-col>
+				<button ion-button icon-left clear small (click)="answerQuestion()">
+					<ion-icon name="md-create"></ion-icon>
+					<div>Answer</div>
+				</button>
+			</ion-col>
+		</ion-row>
 	</ion-card>
 </ion-content>
