@@ -68,15 +68,17 @@ export class AuthService {
 
 		// Write the new post's data simultaneously in the posts list and the user's post list.
 		let updates = {};
-		updates['/questions/' + newPostKey] = answerData;
+		updates['/answers/' + newPostKey] = answerData;
 		updates['users/' + this.afAuth.auth.currentUser.uid + '/' + newPostKey] = answerData;
 
 		firebase.database().ref().update(updates);
 	}
 
 	retriveAnswer(questionId) {
-		firebase.database().ref().child('answers').orderByChild("answerId").equalTo(questionId).on("child_added", function(data) {
- 			console.log("Equal to filter: " + data.val().answer);
+		let self = this;
+		console.log(questionId);
+		firebase.database().ref().child('answers').orderByChild("questionId").equalTo(questionId).on("child_added", function(data) {
+			self.events.publish('answer:fetched', data.val());
 		});
 	}
 

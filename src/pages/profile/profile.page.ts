@@ -24,7 +24,7 @@ export class profilePage {
 	}
 
 	ngOnInit(): void {
-		let profileVal = this.auth.retrieveProfileInfo();
+		this.auth.retrieveProfileInfo();
 
 		this.events.subscribe('profile:fetched', (profileData) => {
 			if(profileData){

@@ -48,6 +48,7 @@ export class AskPage {
     if(this.isAnswer){
       let answerData = {
         answerId: this.uuid.getUUID(),
+        questionId: this.navParams.get('questionId'),
         answer: this.inputData
       }
 
