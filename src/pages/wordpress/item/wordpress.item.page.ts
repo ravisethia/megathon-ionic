@@ -14,10 +14,9 @@ export class WordpressItemPage {
 	private nav: NavController;
 	private post = {
 		questionId: '',
-		question: '',
-		answerId: '',
-		answer: ''
+		question: ''
 	};
+	private answers = [];
 
 	constructor(navParams: NavParams, nav: NavController, private auth: AuthService, public events: Events) {
 		this.post = navParams.get('item');
@@ -31,8 +30,14 @@ export class WordpressItemPage {
 		this.events.subscribe('answer:fetched', (answerData) => {
 			console.log(answerData);
 			if( answerData ) {
-				self.post.answerId = answerData.answerId;
-				self.post.answer = answerData.answer;
+				let answers = {
+					answerId: answerData.answerId,
+					answer: answerData.answer
+				};
+
+				self.answers.push(answers);
+
+				console.log(self.answers);
 			}
 		});
 	}
