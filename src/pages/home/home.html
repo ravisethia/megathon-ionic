@@ -9,14 +9,11 @@
 
 <ion-content class="getting-started">
 
-	<ion-row>
-		<ion-card (click)="askQuestion()" text-center>
-			<ion-card-content padding>
-				<ion-icon name="chatbubbles" padding></ion-icon>
-				<p>Ask a question</p>
-			</ion-card-content>
-		</ion-card>
-	</ion-row>
+	<ion-fab right bottom>
+		<button ion-fab color="secondary" (click)="askQuestion()">
+			<ion-icon name="chatbubbles"></ion-icon>
+		</button>
+	</ion-fab>
 
 	<ion-row text-center>
 		<div class="item-heading" padding>Recent Questions</div>
