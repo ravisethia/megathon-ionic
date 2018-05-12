@@ -5,6 +5,8 @@ import * as firebase from 'firebase/app';
 import AuthProvider = firebase.auth.AuthProvider;
 import * as database from 'firebase/database';
 
+database.Reference;
+
 @Injectable()
 export class AuthService {
 	private user: firebase.User;
