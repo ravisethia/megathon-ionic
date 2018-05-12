@@ -32,7 +32,7 @@ export class HomePage {
 	private mapsService: MapsService;
 	private browserService: InAppBrowserService;
 	private nav: Nav;
-	private wordpressService: WordpressService;	
+	private wordpressService: WordpressService;
 
 	constructor(
 		emailService: EmailService,
@@ -63,17 +63,12 @@ export class HomePage {
 	init(): void {
 
 		let self = this;
-		this.auth.retrieveQuestions();
-
-		this.presentLoading();
-
 		this.events.subscribe('questions:fetched', (questionData) => {
-			console.log(questionData);
+		  this.posts = [];
 			for(let propName in questionData) {
 				if(questionData.hasOwnProperty(propName)) {
 					let propValue = questionData[propName];
 					if (propValue.question) {
-
 						this.posts.push({
 							questionId: propValue.questionId,
 							question: propValue.question
@@ -83,6 +78,8 @@ export class HomePage {
 				}
 			}
 		});
+		this.auth.retrieveQuestions();
+		this.presentLoading();
 	}
 
 	public navigateTo(tile) {

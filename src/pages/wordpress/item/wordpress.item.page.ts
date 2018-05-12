@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavParams, Events } from 'ionic-angular';
 
 import { NavController } from 'ionic-angular';
@@ -9,7 +9,7 @@ import { AuthService } from '../../../services/auth.service';
 @Component({
 	templateUrl: 'wordpress.item.html'
 })
-export class WordpressItemPage {
+export class WordpressItemPage implements OnInit {
 
 	private nav: NavController;
 	private post = {
@@ -23,26 +23,20 @@ export class WordpressItemPage {
 		this.nav = nav;
 	}
 
-	ngOnInit() {
-		let self = this;
-		this.auth.retriveAnswer(this.post.questionId);
-
+	ngOnInit(): void {
 		this.events.subscribe('answer:fetched', (answerData) => {
-			console.log(answerData);
 			if( answerData ) {
-				let answers = {
+				let answer = {
 					answerId: answerData.answerId,
 					answer: answerData.answer,
 					upvote: answerData.upvote,
 					downvote: answerData.downvote,
-					questionId: self.post.questionId
+					questionId: this.post.questionId
 				};
-
-				self.answers.push(answers);
-
-				console.log(self.answers);
+				this.answers.push(answer);
 			}
 		});
+		this.auth.retriveAnswer(this.post.questionId);
 	}
 
   public upvoteClicked(answerData) {

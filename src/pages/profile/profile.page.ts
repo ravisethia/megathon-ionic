@@ -24,8 +24,6 @@ export class profilePage {
 	}
 
 	ngOnInit(): void {
-		this.auth.retrieveProfileInfo();
-
 		this.events.subscribe('profile:fetched', (profileData) => {
 			if(profileData){
 				this.profileData.firstName = profileData.firstName;
@@ -34,6 +32,7 @@ export class profilePage {
 				this.profileData.designation = profileData.designation;
 			}
 		});
+		this.auth.retrieveProfileInfo();
 	}
 
 	onChange(designation) {
@@ -49,7 +48,7 @@ export class profilePage {
 			message: 'Your profile is updated!',
 			duration: 3000
 		  });
-		
+
 		toast.present();
-	}	
+	}
 }
