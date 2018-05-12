@@ -5,8 +5,6 @@ import * as firebase from 'firebase/app';
 import AuthProvider = firebase.auth.AuthProvider;
 import * as database from 'firebase/database';
 
-console.log(database.Reference);
-
 @Injectable()
 export class AuthService {
 	private user: firebase.User;
@@ -53,13 +51,12 @@ export class AuthService {
 	addQuestion(questionData) {
 	  // Get a key for a new Post.
 		questionData.user = this.afAuth.auth.currentUser.email;
-	  const newPostKey = firebase.database().ref().child('questions').push(questionData).key;
+		const newPostKey = firebase.database().ref().child('questions').push(questionData).key;
 
-	  // Write the new post's data simultaneously in the posts list and the user's post list.
-	  let updates = {};
-	  updates['/questions/' + newPostKey] = questionData;
-	  updates['users/' + this.afAuth.auth.currentUser.uid + '/' + newPostKey] = questionData;
-
+		// Write the new post's data simultaneously in the posts list and the user's post list.
+		let updates = {};
+		updates['/questions/' + newPostKey] = questionData;
+		updates['users/' + this.afAuth.auth.currentUser.uid + '/' + newPostKey] = questionData;
 	  firebase.database().ref().update(updates);
 	}
 
@@ -77,7 +74,6 @@ export class AuthService {
 
 	retriveAnswer(questionId) {
 		let self = this;
-		console.log(questionId);
 		firebase.database().ref().child('answers').orderByChild("questionId").equalTo(questionId).on("child_added", function(data) {
 			self.events.publish('answer:fetched', data.val());
 		});

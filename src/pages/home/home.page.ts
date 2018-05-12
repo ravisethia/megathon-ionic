@@ -27,7 +27,7 @@ export class HomePage {
 	public posts = [];
 
 	questionsList=[];
-
+	loader;
 	private emailService: EmailService;
 	private callService: CallService;
 	private mapsService: MapsService;
@@ -57,18 +57,18 @@ export class HomePage {
 	}
 
 	presentLoading() {
-		let loader = this.loadingCtrl.create({
-			content: "Please wait...",
-			duration: 3000
+		this.loader = this.loadingCtrl.create({
+			content: "Please wait..."
 		});
-		loader.present();
+		this.loader.present();
 	}
 
 	init(): void {
 		let self = this;
 		this.posts = [];
-
+		this.presentLoading();
 		this.events.subscribe('questions:fetched', (questionData) => {
+		this.loader.dismiss();
 		  this.posts = [];
 			for(let propName in questionData) {
 				if(questionData.hasOwnProperty(propName)) {
@@ -87,7 +87,6 @@ export class HomePage {
 			this.posts.reverse();
 		});
 		this.auth.retrieveQuestions();
-		this.presentLoading();
 	}
 
 	public navigateTo(tile) {

@@ -14,8 +14,8 @@ export class TopTagsPage {
 	public posts: Post[];
 	public items: any[];
 	regform: FormGroup;
-	private wordpressService: WordpressService;	
-
+	private wordpressService: WordpressService;
+	loader;
 	constructor(
 		private navCtrl: NavController,
 		wordpressService: WordpressService,
@@ -29,17 +29,17 @@ export class TopTagsPage {
 		this.wordpressService = wordpressService;
 	}
 	presentLoading() {
-		let loader = this.loadingCtrl.create({
-		  content: "Please wait...",
-		  duration: 3000
+		 this.loader = this.loadingCtrl.create({
+		  content: "Please wait..."
 		});
-		loader.present();
+		this.loader.present();
 	  }
 	ngOnInit(): void {
 		this.presentLoading();
 		this.wordpressService.getPosts()
 			.subscribe(posts => {
 				this.posts = posts;
+				this.loader.dismiss();
 			});
 	}
 
@@ -52,5 +52,5 @@ export class TopTagsPage {
 		this.navCtrl.setRoot(HomePage);
 	}
 
-	
+
 }
