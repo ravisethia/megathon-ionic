@@ -4,6 +4,7 @@ import { NavController } from 'ionic-angular';
 import { HomePage } from '../home/home.page';
 import { AuthService } from '../../services/auth.service';
 import { SignupPage } from '../signup/signup';
+import {ForgetPasswordPage} from '../forget-password/forget-password';
 
 @IonicPage()
 @Component({
@@ -46,7 +47,9 @@ export class LoginPage {
   signup(){
     this.navCtrl.push(SignupPage);
   }
-
+	forgetPassword(){
+		this.navCtrl.push(ForgetPasswordPage);
+	}
   loginWithGoogle() {
   this.auth.signInWithGoogle()
     .then(

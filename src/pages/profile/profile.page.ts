@@ -27,10 +27,12 @@ export class profilePage {
 		let profileVal = this.auth.retrieveProfileInfo();
 
 		this.events.subscribe('profile:fetched', (profileData) => {
-			this.profileData.firstName = profileData.firstName;
-			this.profileData.lastName = profileData.lastName;
-			this.profileData.location = profileData.location;
-			this.profileData.designation = profileData.designation;
+			if(profileData){
+				this.profileData.firstName = profileData.firstName;
+				this.profileData.lastName = profileData.lastName;
+				this.profileData.location = profileData.location;
+				this.profileData.designation = profileData.designation;
+			}
 		});
 	}
 

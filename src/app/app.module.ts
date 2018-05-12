@@ -20,6 +20,7 @@ import { LoginPage } from '../pages/login/login';
 import { AuthService } from '../services/auth.service';
 import { SignupPage } from '../pages/signup/signup';
 import { TopTagsModule } from '../pages/toptags/toptags.module';
+import {ForgetPasswordPageModule} from '../pages/forget-password/forget-password.module';
 
 @NgModule({
 	declarations: [
@@ -41,7 +42,8 @@ import { TopTagsModule } from '../pages/toptags/toptags.module';
 		HomeModule,
 		profileModule,
 		WordpressModule,
-		TopTagsModule
+		TopTagsModule,
+		ForgetPasswordPageModule
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
