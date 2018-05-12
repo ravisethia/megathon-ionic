@@ -28,7 +28,6 @@ export class WordpressItemPage {
 		this.auth.retriveAnswer(this.post.questionId);
 
 		this.events.subscribe('answer:fetched', (answerData) => {
-			console.log(answerData);
 			if( answerData ) {
 				let answers = {
 					answerId: answerData.answerId,

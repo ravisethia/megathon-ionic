@@ -14,7 +14,7 @@ export class WordpressListPage implements OnInit {
 	public posts: Post[];
 	likeCount = 0;
 	dislikeCount = 0;
-
+	loader;
 	private wordpressService: WordpressService;													
 	private nav: NavController;
 
@@ -23,17 +23,17 @@ export class WordpressListPage implements OnInit {
 		this.nav = nav;
 	}
 	presentLoading() {
-		let loader = this.loadingCtrl.create({
-		  content: "Please wait...",
-		  duration: 3000
+		 this.loader = this.loadingCtrl.create({
+		  content: "Please wait..."
 		});
-		loader.present();
+		this.loader.present();
 	  }
 	ngOnInit(): void {
 		this.presentLoading();
 		this.wordpressService.getPosts()
 			.subscribe(posts => {
 				this.posts = posts;
+				this.loader.dismiss();
 			});
 	}
 
