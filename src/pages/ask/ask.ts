@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { Http } from '@angular/http';
+
 import { IonicPage, Nav, NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { AuthService } from '../../services/auth.service';
 import { UUIDService } from '../../services/uuid.service';
+import { KeywordService } from '../../services/keyword.service';
 
 /**
  * Generated class for the AskPage page.
@@ -15,7 +18,7 @@ import { UUIDService } from '../../services/uuid.service';
 @Component({
   selector: 'page-ask',
   templateUrl: 'ask.html',
-  providers: [UUIDService]
+  providers: [UUIDService, KeywordService]
 })
 export class AskPage {
   private inputData : String;
@@ -25,8 +28,9 @@ export class AskPage {
   description='Ask your question here';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, nav: Nav,
+    private http: Http,
     private auth: AuthService, public toastCtrl: ToastController,
-    private uuid: UUIDService
+    private uuid: UUIDService, private keyword: KeywordService
   ) {
       this.nav = nav;
   }
@@ -70,6 +74,12 @@ export class AskPage {
 
       if (questionData.question.length > 2) {
         this.auth.addQuestion(questionData);
+
+        this.http.post('http://api.cortical.io/rest/text/keywords?retina_name=en_associative',
+          questionData.question,
+          this.keyword.getHeaders()).subscribe(data => {
+            console.log(data);
+        });
 
         toastOpts.message = 'Your question is posted';
 

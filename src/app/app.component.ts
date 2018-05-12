@@ -37,10 +37,10 @@ export class MyApp {
 		// set our app's pages
 		this.pages = [
 			{ title: 'Home', component: HomePage, icon: 'home' },
-			{ title: 'Top Queries', component: WordpressListPage, icon: 'logo-wordpress' },
+			{ title: 'Top Queries', component: WordpressListPage, icon: 'analytics' },
 			{ title: 'Top Tags', component: TopTagsPage, icon: 'pricetags' },
-			{ title: 'Recent Questions', component: WordpressListPage, icon: 'map' },
-			{ title: 'Your Questions', component: TopTagsPage, icon: 'help-buoy' },
+			{ title: 'Recent Questions', component: WordpressListPage, icon: 'stopwatch' },
+			{ title: 'Your Questions', component: TopTagsPage, icon: 'help' },
 			{ title: 'Profile', component: ProfileAppPage, icon: 'person' }
 		];
 	}

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Nav, Events } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 
 import { WordpressListPage } from '../wordpress/list/wordpress.list.page';
 
@@ -15,7 +16,7 @@ import { Post } from '../wordpress/models/post.model';
 import { WordpressItemPage } from '../wordpress/item/wordpress.item.page';
 import { WordpressService } from '../wordpress/wordpress.service';
 import { AuthService } from '../../services/auth.service';
-import { LoadingController } from 'ionic-angular';
+
 
 @Component({
 	templateUrl: 'home.html',
