@@ -26,7 +26,7 @@ export class HomePage {
 	public posts = [];
 
 	questionsList=[];
-
+	loader;
 	private emailService: EmailService;
 	private callService: CallService;
 	private mapsService: MapsService;
@@ -54,21 +54,18 @@ export class HomePage {
 		this.init();
 	}
 	presentLoading() {
-		let loader = this.loadingCtrl.create({
-		  content: "Please wait...",
-		  duration: 3000
+		 this.loader = this.loadingCtrl.create({
+		  content: "Please wait..."
 		});
-		loader.present();
+		this.loader.present();
 	  }
 	init(): void {
 
 		let self = this;
 		this.auth.retrieveQuestions();
-
 		this.presentLoading();
-
 		this.events.subscribe('questions:fetched', (questionData) => {
-			console.log(questionData);
+			this.loader.dismiss();
 			for(let propName in questionData) {
 				if(questionData.hasOwnProperty(propName)) {
 					let propValue = questionData[propName];
