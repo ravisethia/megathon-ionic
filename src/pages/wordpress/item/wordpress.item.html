@@ -18,37 +18,44 @@
 			<h2>Marty McFly</h2>
 			<p>November 5, 1955</p>
 			<ion-avatar item-end>
-					<ion-icon name="md-medal" color="secondary"></ion-icon>
+				<ion-icon name="md-medal" color="secondary"></ion-icon>
 			</ion-avatar>
 		</ion-item>
 		<ion-card-content>
-			<h2 class="card-title">{{post.question}}</h2>
+			<h2 class="card-title"><strong>{{post.question}}</strong></h2>
 			<!--<p><strong>{{post.author}}</strong> - {{post.date}}</p>
 			<p><i>[{{post.tags.join(', ')}}]</i></p> -->
 		</ion-card-content>
+		<ion-row>
+			<ion-col>
+				<ion-buttons end>
+					<button end ion-button icon-left clear small (click)="answerQuestion()">
+						<ion-icon name="md-create"></ion-icon>
+						<div>&nbsp;Answer</div>
+					</button>
+				</ion-buttons>
+			</ion-col>
+		</ion-row>
+
 	</ion-card>
 
-	<ion-card>
-		<ion-row *ngFor="let answer of answers">
-
-			<div [innerHTML]="answer.answer"></div>
+	<ion-card *ngFor="let answer of answers">
+			<ion-row>
+				<ion-col col-12 padding>
+					<p>{{answer.answer}}</p>
+				</ion-col>
+	
 
 			<ion-col>
-				<button ion-button icon-left clear small>
+				<button ion-button icon-left clear small (click)="upvoteClicked(answer)">
 					<ion-icon name="thumbs-up"></ion-icon>
-					<div [innerHTML]="answer.upvote" (click)="upvoteClicked(answer)"></div>
+					<div [innerHTML]="answer.upvote"></div>
 				</button>
 			</ion-col>
 			<ion-col>
-				<button ion-button icon-left clear small>
+				<button ion-button icon-left clear small  (click)="downvoteClicked(answer)">
 					<ion-icon name="thumbs-down"></ion-icon>
-					<div [innerHTML]="answer.downvote" (click)="downvoteClicked(answer)"></div>
-				</button>
-			</ion-col>
-			<ion-col>
-				<button ion-button icon-left clear small (click)="answerQuestion()">
-					<ion-icon name="md-create"></ion-icon>
-					<div>Answer</div>
+					<div [innerHTML]="answer.downvote"></div>
 				</button>
 			</ion-col>
 		</ion-row>
