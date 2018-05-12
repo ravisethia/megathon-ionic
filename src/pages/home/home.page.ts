@@ -51,6 +51,7 @@ export class HomePage {
 		this.browserService = browserService;
 		this.nav = nav;
 		this.wordpressService = wordpressService;
+		this.init();
 	}
 	presentLoading() {
 		let loader = this.loadingCtrl.create({
@@ -59,11 +60,7 @@ export class HomePage {
 		});
 		loader.present();
 	  }
-	ngOnInit(): void {
-		// this.wordpressService.getPosts()
-		// 	.subscribe(posts => {
-		// 		this.posts = posts;
-		// 	});
+	init(): void {
 
 		let self = this;
 		this.auth.retrieveQuestions();
