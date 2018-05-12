@@ -18,8 +18,11 @@ import { UUIDService } from '../../services/uuid.service';
   providers: [UUIDService]
 })
 export class AskPage {
-  private question : String;
+  private inputData : String;
   private nav: Nav;
+  isAnswer = false;
+  title='Question';
+  description='Ask your question here';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, nav: Nav,
     private auth: AuthService, public toastCtrl: ToastController,
@@ -27,29 +30,52 @@ export class AskPage {
   ) {
       this.nav = nav;
   }
-
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad AskPage');
+    this.isAnswer = this.navParams.get('isAnswer');
+    this.title= this.isAnswer ? 'Answer': this.title;
+    this.description = this.isAnswer ? 'Write your answer here..' : this.description;
   }
 
-  postQuestion() {
-    let questionData = {};
+  postInput() {
 
-    let toast = this.toastCtrl.create({
-      message: 'Your question is posted',
-      duration: 3000
-    });
-
-    questionData = {
-      questionId : this.uuid.getUUID(),
-      question : this.question
+    let toastOpts = {
+      duration: 3000,
+      message: ''
     };
 
-    if (questionData) {
-      this.auth.addQuestion(questionData);
+    if(this.isAnswer){
+      let answerData = {
+        answerId: this.uuid.getUUID(),
+        answer: this.inputData
+      }
 
-      toast.present();
-      this.nav.pop();
+      if (answerData.answer.length > 2) {
+        this.auth.postAnswer(answerData);
+
+        toastOpts.message = 'Your answer is posted';
+
+        this.nav.pop();
+      }
+    } else {
+  
+      let questionData = {
+        questionId : this.uuid.getUUID(),
+        question : this.inputData
+      };
+  
+      if (questionData.question.length > 2) {
+        this.auth.addQuestion(questionData);
+
+        toastOpts.message = 'Your question is posted';
+  
+        this.nav.pop();
+      }
     }
+
+    let toast = this.toastCtrl.create(toastOpts);
+
+    toast.present();
   }
 }

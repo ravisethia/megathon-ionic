@@ -23,8 +23,8 @@
 		</ion-item>
 		<ion-card-content>
 			<h2 class="card-title">{{post.question}}</h2>
-			<!-- <div [innerHTML]="post.content"></div>
-			<p><strong>{{post.author}}</strong> - {{post.date}}</p>
+			 <div [innerHTML]="post.answer"></div>
+			<!--<p><strong>{{post.author}}</strong> - {{post.date}}</p>
 			<p><i>[{{post.tags.join(', ')}}]</i></p> -->
 		</ion-card-content>
 		<ion-row>
@@ -49,7 +49,7 @@
 			</button>
 		</ion-col>
 		<ion-col>
-			<button ion-button icon-left clear small>
+			<button ion-button icon-left clear small (click)="answerQuestion()">
 				<ion-icon name="md-create"></ion-icon>
 				<div>Answer</div>
 			</button>
