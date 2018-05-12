@@ -4,6 +4,7 @@ import { NavController } from 'ionic-angular';
 import { HomePage } from '../home/home.page';
 import { Post } from '../wordpress/models/post.model';
 import { WordpressService } from '../wordpress/wordpress.service';
+import { LoadingController } from 'ionic-angular';
 
 @Component({
 	templateUrl: 'toptags.html',
@@ -18,7 +19,8 @@ export class TopTagsPage {
 	constructor(
 		private navCtrl: NavController,
 		wordpressService: WordpressService,
-		fb: FormBuilder
+		fb: FormBuilder,
+		public loadingCtrl: LoadingController
 	) {
 		this.regform = fb.group({
 			fName: ['', Validators.required],
@@ -26,7 +28,15 @@ export class TopTagsPage {
 		});
 		this.wordpressService = wordpressService;
 	}
+	presentLoading() {
+		let loader = this.loadingCtrl.create({
+		  content: "Please wait...",
+		  duration: 3000
+		});
+		loader.present();
+	  }
 	ngOnInit(): void {
+		this.presentLoading();
 		this.wordpressService.getPosts()
 			.subscribe(posts => {
 				this.posts = posts;

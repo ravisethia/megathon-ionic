@@ -15,6 +15,7 @@ import { Post } from '../wordpress/models/post.model';
 import { WordpressItemPage } from '../wordpress/item/wordpress.item.page';
 import { WordpressService } from '../wordpress/wordpress.service';
 import { AuthService } from '../../services/auth.service';
+import { LoadingController } from 'ionic-angular';
 
 @Component({
 	templateUrl: 'home.html',
@@ -41,7 +42,8 @@ export class HomePage {
 		nav: Nav,
 		public events: Events,
 		wordpressService: WordpressService,
-		private auth: AuthService
+		private auth: AuthService,
+		public loadingCtrl: LoadingController
 	) {
 		this.emailService = emailService;
 		this.callService = callService;
@@ -50,7 +52,13 @@ export class HomePage {
 		this.nav = nav;
 		this.wordpressService = wordpressService;
 	}
-
+	presentLoading() {
+		let loader = this.loadingCtrl.create({
+		  content: "Please wait...",
+		  duration: 3000
+		});
+		loader.present();
+	  }
 	ngOnInit(): void {
 		// this.wordpressService.getPosts()
 		// 	.subscribe(posts => {
@@ -59,6 +67,8 @@ export class HomePage {
 
 		let self = this;
 		this.auth.retrieveQuestions();
+
+		this.presentLoading();
 
 		this.events.subscribe('questions:fetched', (questionData) => {
 			console.log(questionData);

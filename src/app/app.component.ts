@@ -39,8 +39,8 @@ export class MyApp {
 			{ title: 'Home', component: HomePage, icon: 'home' },
 			{ title: 'Top Queries', component: WordpressListPage, icon: 'logo-wordpress' },
 			{ title: 'Top Tags', component: TopTagsPage, icon: 'pricetags' },
-			{ title: 'Recent Questions', component: GoogleMapsPage, icon: 'map' },
-			{ title: 'Your Questions', component: ComponentsListPage, icon: 'help-buoy' },
+			{ title: 'Recent Questions', component: WordpressListPage, icon: 'map' },
+			{ title: 'Your Questions', component: TopTagsPage, icon: 'help-buoy' },
 			{ title: 'Profile', component: profilePage, icon: 'person' }
 		];
 	}

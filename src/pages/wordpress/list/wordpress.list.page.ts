@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { WordpressService } from './../wordpress.service';
 import { WordpressItemPage } from '../item/wordpress.item.page';
 import { Post } from '../models/post.model';
+import { LoadingController } from 'ionic-angular';
 
 @Component({
 	templateUrl: 'wordpress.list.html',
@@ -17,12 +18,19 @@ export class WordpressListPage implements OnInit {
 	private wordpressService: WordpressService;													
 	private nav: NavController;
 
-	constructor(wordpressService: WordpressService, nav: NavController) {
+	constructor(wordpressService: WordpressService,public loadingCtrl: LoadingController, nav: NavController) {
 		this.wordpressService = wordpressService;
 		this.nav = nav;
 	}
-
+	presentLoading() {
+		let loader = this.loadingCtrl.create({
+		  content: "Please wait...",
+		  duration: 3000
+		});
+		loader.present();
+	  }
 	ngOnInit(): void {
+		this.presentLoading();
 		this.wordpressService.getPosts()
 			.subscribe(posts => {
 				this.posts = posts;
