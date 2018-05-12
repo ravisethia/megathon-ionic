@@ -33,7 +33,7 @@
 		<div padding-horizontal>
 			<div class="form-error">{{loginError}}</div>
 
-			<button ion-button full type="submit" [disabled]="!loginForm.valid">Log in</button>
+			<button class="primary-button" ion-button full type="submit" [disabled]="!loginForm.valid">Log in</button>
 			<div class="login-footer">
 				<p text-center>
 					<a (click)="forgetPassword()" href="#">Forgot password?</a>
@@ -47,12 +47,12 @@
 						Don't have an account yet? Register now.
 					</p>
 
-					<button ion-button icon-left block outline (click)="loginWithGoogle()">
+					<button class="secondary-button" ion-button icon-left block outline (click)="loginWithGoogle()">
 						<ion-icon name="logo-google"></ion-icon>
 						Log in with Google
 					</button>
 
-					<button ion-button icon-left block outline (click)="signup()">
+					<button class="secondary-button" ion-button icon-left block outline (click)="signup()">
 						<ion-icon name="person-add"></ion-icon>
 						Sign up
 					</button>

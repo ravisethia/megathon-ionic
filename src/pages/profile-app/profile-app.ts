@@ -1,19 +1,30 @@
 import { Component } from '@angular/core';
-import { Events, NavController, ToastController } from 'ionic-angular';
+import { Events, NavController, ToastController,IonicPage } from 'ionic-angular';
 import { HomePage } from '../home/home.page';
 
 import { AuthService } from '../../services/auth.service';
 
+/**
+ * Generated class for the ProfileAppPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
-	templateUrl: 'profile.html'
+  selector: 'page-profile-app',
+  templateUrl: 'profile-app.html'
 })
-export class profilePage {
-	private designation;
+export class ProfileAppPage {
+
+  	private designation;
 	private profileData = {
 		firstName: '',
 		lastName: '',
 		location: '',
-		designation: ''
+		designation: '',
+		initials:''
 	};
 
 	constructor(
@@ -24,12 +35,14 @@ export class profilePage {
 	}
 
 	ngOnInit(): void {
+
 		this.events.subscribe('profile:fetched', (profileData) => {
 			if(profileData){
 				this.profileData.firstName = profileData.firstName;
 				this.profileData.lastName = profileData.lastName;
 				this.profileData.location = profileData.location;
 				this.profileData.designation = profileData.designation;
+				this.profileData.initials = profileData.firstName.charAt(0)+profileData.lastName.charAt(0);
 			}
 		});
 		this.auth.retrieveProfileInfo();
@@ -48,7 +61,8 @@ export class profilePage {
 			message: 'Your profile is updated!',
 			duration: 3000
 		  });
-
+		
 		toast.present();
 	}
+
 }

@@ -12,6 +12,8 @@
 	<form (ngSubmit)="register()">
 		<ion-list inset>
 
+			<div class="profile-image"><ion-input name="initials" disabled="true" [(ngModel)]="profileData.initials"></ion-input></div>
+
 			<ion-item >
 				<ion-label stacked>First Name</ion-label>
 				<ion-input type="text" placeholder="First Name" name = "firstName" [(ngModel)]="profileData.firstName"></ion-input>
@@ -29,17 +31,30 @@
 
 			<ion-item>
 				<ion-select name="designation" [(ngModel)]="profileData.designation" placeholder="Designation">
-					<ion-option value="bta">BTA</ion-option>
+					<ion-option value="bta">Associate Analyst</ion-option>
+					<ion-option value="bta">Business Technology Analyst</ion-option>
 				    <ion-option value="con" selected>Consultant</ion-option>
-				    <ion-option value="srcon">Sr. Consultant</ion-option>
-				    <ion-option value="splsr">Specialist Sr.</ion-option>
+				    <ion-option value="srcon">Senior Consultant</ion-option>
+				    <ion-option value="splsr">Specialist Senior</ion-option>
+				    <ion-option value="splmr">Specialist Master</ion-option>
+				    <ion-option value="mgr">Manager</ion-option>
+				    <ion-option value="snrmgr">Senior Manager</ion-option>
 				</ion-select>
 			</ion-item>
+
+			<!--<ion-item>
+				<ion-select name="Primary Technology" [(ngModel)]="profileData.skills" placeholder="Primary Technology">
+					<ion-option value="iot">IOT</ion-option>
+				    <ion-option value="arvr">AR/VR</ion-option>
+				    <ion-option value="ml">Machine Learning</ion-option>
+				    <ion-option value="mob">Mobile Applications</ion-option>
+				</ion-select>
+			</ion-item>-->
 
 		</ion-list>
 
 		<div padding-horizontal>
-			<button ion-button full type="submit">UPDATE</button>
+			<button class="primary-button" ion-button full type="submit">UPDATE</button>
 		</div>
 	</form>
 </ion-content>

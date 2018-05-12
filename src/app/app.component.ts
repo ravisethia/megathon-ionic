@@ -5,7 +5,7 @@ import { App, MenuController, Nav, Platform } from 'ionic-angular';
 import { ComponentsListPage } from '../pages/components/list/components.list.page';
 import { GoogleMapsPage } from '../pages/google-maps/google-maps.page';
 import { HomePage } from '../pages/home/home.page';
-import { profilePage } from '../pages/profile/profile.page';
+import { ProfileAppPage } from '../pages/profile-app/profile-app';
 import { WordpressListPage } from '../pages/wordpress/list/wordpress.list.page';
 import { TopTagsPage } from '../pages/toptags/toptags.page';
 
@@ -41,7 +41,7 @@ export class MyApp {
 			{ title: 'Top Tags', component: TopTagsPage, icon: 'pricetags' },
 			{ title: 'Recent Questions', component: WordpressListPage, icon: 'map' },
 			{ title: 'Your Questions', component: TopTagsPage, icon: 'help-buoy' },
-			{ title: 'Profile', component: profilePage, icon: 'person' }
+			{ title: 'Profile', component: ProfileAppPage, icon: 'person' }
 		];
 	}
 
