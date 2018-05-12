@@ -84,6 +84,7 @@ export class HomePage {
 					// do something with each element here
 				}
 			}
+			this.posts.reverse();
 		});
 		this.auth.retrieveQuestions();
 		this.presentLoading();
