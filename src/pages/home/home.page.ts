@@ -57,10 +57,20 @@ export class HomePage {
 	}
 
 	presentLoading() {
-		this.loader = this.loadingCtrl.create({
+		if(!this.loader){
+			this.loader = this.loadingCtrl.create({
 			content: "Please wait..."
 		});
 		this.loader.present();
+		}
+		
+	}
+
+	dismissLoader(){
+		if(this.loader){
+		 this.loader.dismiss();
+		 this.loader=null;
+		}
 	}
 
 	init(): void {
@@ -68,7 +78,7 @@ export class HomePage {
 		this.posts = [];
 		this.presentLoading();
 		this.events.subscribe('questions:fetched', (questionData) => {
-		this.loader.dismiss();
+			this.dismissLoader();
 		  this.posts = [];
 			for(let propName in questionData) {
 				if(questionData.hasOwnProperty(propName)) {

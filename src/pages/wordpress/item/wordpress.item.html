@@ -40,19 +40,16 @@
 	</ion-card>
 
 	<ion-card *ngFor="let answer of answers">
-			<ion-row>
-				<ion-col col-12 padding>
-					<p>{{answer.answer}}</p>
-				</ion-col>
+		<ion-row>
+			<ion-col col-12 padding>
+				<p>{{answer.answer}}</p>
+			</ion-col>
 
-
-			<ion-col>
+			<ion-col text-right>
 				<button ion-button icon-left clear small (click)="upvoteClicked(answer)">
 					<ion-icon class="green-icon" name="thumbs-up"></ion-icon>
 					<div class="green-text" [innerHTML]="answer.upvote"></div>
 				</button>
-			</ion-col>
-			<ion-col>
 				<button ion-button icon-left clear small  (click)="downvoteClicked(answer)">
 					<ion-icon class="green-icon" name="thumbs-down"></ion-icon>
 					<div class="green-text" [innerHTML]="answer.downvote"></div>
